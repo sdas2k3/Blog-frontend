@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
-
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   async function register(ev) {
     ev.preventDefault();
-    const response = await fetch("http://localhost:4000/api/auth/register", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      "https://blog-backend-sdas2k3.vercel.app/api/auth/register",
+      {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     if (response.status === 200) {
       alert("registration successful");
       setRedirect(true);
