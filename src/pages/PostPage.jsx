@@ -11,7 +11,7 @@ export default function PostPage() {
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`https://blog-backend-sdas2k3.vercel.app/api/post/get-post/${id}`).then((response) => {
+    fetch(`https://blog-backend-sdas2k3.vercel.app/api1/post/get-post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
       });
@@ -23,7 +23,7 @@ export default function PostPage() {
     console.log(postInfo?.cover);
     const data = { cover: postInfo?.cover };
     const response = await fetch(
-      `https://blog-backend-sdas2k3.vercel.app/api/post/delete-post/${id}`,
+      `https://blog-backend-sdas2k3.vercel.app/api1/post/delete-post/${id}`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
