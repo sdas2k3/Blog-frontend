@@ -75,10 +75,11 @@ div.post p.summary {
   line-height: 1.8rem;
 }
 div.post img {
-  height: 200px;
+  height: 300px;
   width: 100%;
   object-fit: cover;
   border-radius: 10px;
+  margin-top: 10px;
 }
 
 form.login,
