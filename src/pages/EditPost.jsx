@@ -10,9 +10,11 @@ export default function EditPost() {
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
-
+  const [disable, setDisable] = useState(false);
   useEffect(() => {
-    fetch("https://blog-backend-sdas2k3.vercel.app/api1/post/get-post/" + id).then((response) => {
+    fetch(
+      "https://blog-backend-sdas2k3.vercel.app/api1/post/get-post/" + id
+    ).then((response) => {
       response.json().then((postInfo) => {
         setTitle(postInfo.title);
         setContent(postInfo.content);
@@ -23,6 +25,7 @@ export default function EditPost() {
 
   async function updatePost(ev) {
     ev.preventDefault();
+    setDisable(true);
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);
@@ -31,11 +34,15 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
-    const response = await fetch("https://blog-backend-sdas2k3.vercel.app/api1/post/update-post", {
-      method: "PUT",
-      body: data,
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://blog-backend-sdas2k3.vercel.app/api1/post/update-post",
+      {
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }
+    );
+    setDisable(false);
     if (response.ok) {
       setRedirect(true);
     }
@@ -61,7 +68,9 @@ export default function EditPost() {
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
       <Editor onChange={setContent} value={content} />
-      <button style={{ marginTop: "5px" }}>Update post</button>
+      <button style={{ marginTop: "5px" }} disabled={disable}>
+        Update post
+      </button>
     </form>
   );
 }

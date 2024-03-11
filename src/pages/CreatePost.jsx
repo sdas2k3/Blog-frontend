@@ -9,18 +9,24 @@ export default function CreatePost() {
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [disable, setDisable] = useState(false);
   async function createNewPost(ev) {
     const data = new FormData();
+    setDisable(true);
     data.set("title", title);
     data.set("summary", summary);
     data.set("content", content);
     data.set("file", files[0]);
     ev.preventDefault();
-    const response = await fetch("https://blog-backend-sdas2k3.vercel.app/api1/post/create-post", {
-      method: "POST",
-      body: data,
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://blog-backend-sdas2k3.vercel.app/api1/post/create-post",
+      {
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }
+    );
+    setDisable(false);
     if (response.ok) {
       setRedirect(true);
     }
@@ -45,7 +51,9 @@ export default function CreatePost() {
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
       <Editor value={content} onChange={setContent} />
-      <button style={{ marginTop: "5px" }}>Create post</button>
+      <button style={{ marginTop: "5px" }} disabled={disable}>
+        Create post
+      </button>
     </form>
   );
 }
