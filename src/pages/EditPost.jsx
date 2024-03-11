@@ -12,7 +12,7 @@ export default function EditPost() {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch("blog-backend-sdas2k3.vercel.app/api1/post/get-post/" + id).then((response) => {
+    fetch("https://blog-backend-sdas2k3.vercel.app/api1/post/get-post/" + id).then((response) => {
       response.json().then((postInfo) => {
         setTitle(postInfo.title);
         setContent(postInfo.content);
@@ -31,7 +31,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
-    const response = await fetch("blog-backend-sdas2k3.vercel.app/api1/post/update-post", {
+    const response = await fetch("https://blog-backend-sdas2k3.vercel.app/api1/post/update-post", {
       method: "PUT",
       body: data,
       credentials: "include",

@@ -8,7 +8,7 @@ export default function RegisterPage() {
   async function register(ev) {
     ev.preventDefault();
     const response = await fetch(
-      "blog-backend-sdas2k3.vercel.app/api1/auth/register",
+      "https://blog-backend-sdas2k3.vercel.app/api1/auth/register",
       {
         method: "POST",
         body: JSON.stringify({ username, password }),

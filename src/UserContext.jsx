@@ -6,7 +6,7 @@ export const UserContext = createContext();
 export const UserContextProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
-    fetch("blog-backend-sdas2k3.vercel.app/api1/user/profile", {
+    fetch("https://blog-backend-sdas2k3.vercel.app/api1/user/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
