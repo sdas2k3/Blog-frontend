@@ -5,15 +5,15 @@ import { UserContext } from "./UserContext";
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
-  // useEffect(() => {
-  //   fetch("https://blog-backend-sdas2k3.vercel.app/api1/user/profile", {
-  //     credentials: "include",
-  //   }).then((response) => {
-  //     response.json().then((userInfo) => {
-  //       setUserInfo(userInfo);
-  //     });
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("https://blog-backend-sdas2k3.vercel.app/api1/user/profile", {
+      credentials: "include",
+    }).then((response) => {
+      response.json().then((userInfo) => {
+        setUserInfo(userInfo);
+      });
+    });
+  }, []);
   function logout() {
     fetch("https://blog-backend-sdas2k3.vercel.app/api1/auth/logout", {
       credentials: "include",
