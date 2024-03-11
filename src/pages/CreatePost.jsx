@@ -51,7 +51,11 @@ export default function CreatePost() {
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
       <Editor value={content} onChange={setContent} />
-      <button style={{ marginTop: "5px" }} disabled={disable}>
+      <button
+        style={{ marginTop: "5px" }}
+        disabled={disable}
+        onClick={setDisable(true)}
+      >
         Create post
       </button>
     </form>

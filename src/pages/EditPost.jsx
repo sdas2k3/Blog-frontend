@@ -68,7 +68,11 @@ export default function EditPost() {
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
       <Editor onChange={setContent} value={content} />
-      <button style={{ marginTop: "5px" }} disabled={disable}>
+      <button
+        style={{ marginTop: "5px" }}
+        disabled={disable}
+        onClick={setDisable(true)}
+      >
         Update post
       </button>
     </form>
