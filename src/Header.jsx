@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserContext";
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
+  const [redirect, setRedirect] = useState(false);
   useEffect(() => {
     fetch("https://blog-backend-sdas2k3.vercel.app/api1/user/profile", {
       credentials: "include",
@@ -19,10 +20,15 @@ export default function Header() {
       credentials: "include",
       method: "POST",
     });
+    setRedirect(true);
     setUserInfo(null);
   }
 
   const username = userInfo?.username;
+
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <header>
